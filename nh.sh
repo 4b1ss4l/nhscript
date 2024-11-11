@@ -90,7 +90,7 @@ sleep 10
             ;;
         9)
             echo -e "\e[36mUpdating the script from GitHub...\e[0m"
-            git pull https://github.com/4b1ss4l/nhscript/nh.sh.git
+            git pull origin main
             ;;
         *)
             echo -e "\e[31mInvalid option, please select a valid number.\e[0m"
