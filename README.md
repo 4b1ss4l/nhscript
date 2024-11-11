@@ -5,7 +5,7 @@
 
 This script is a terminal tool for accessing the Nhentai website, allowing navigation through various options such as random pages, tag searches, popular pages, and other functionalities. It is designed to be used in environments like Termux and Linux-based systems. This script was created to simplify navigation on Nhentai directly from the terminal.
 
-Features
+# Features!
 
 # Random:
 Redirects the user to a random Nhentai page.
@@ -55,7 +55,7 @@ apt update && upgrade && pkg install git -y && git clone https://github.com/4b1s
 In the terminal, run the script with the command:
 
 ```ShellSession
-
+cd nhscript/ && bash nh.sh
 ```
 
 
@@ -82,11 +82,11 @@ This script is intended for adult audiences (18+ years old) due to the content o
 
 Contributions are welcome! If you have suggestions, improvements, or bug fixes for the script, feel free to open an issue or submit a pull request.
 
-Contact
+# Contact
 
 You can find me on GitHub here: 4b1ss4l for any questions or feedback.
 
 
 ---
 
-
+# 🇧🇷🇧🇷🇧🇷
