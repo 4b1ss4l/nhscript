@@ -40,13 +40,11 @@ Termux can be downloaded from the Google Play Store or directly from fdroid
 https://f-droid.org/pt_BR/packages/com.termux/
 ```
 
-1.5 
 
 
-
-2. Download the script:
+2. Fix the terminal and download the script:
  ```ShellSession
-
+apt update && upgrade && pkg install git -y && git clone https://github.com/4b1ss4l/nhscript
 ```
 
  
@@ -72,15 +70,15 @@ Termux or a Linux-based terminal
 Internet connection to access Nhentai
 
 
-License
+# License
 
 This project is licensed under the MIT License. For more information, see the LICENSE file.
 
-Disclaimer
+# Disclaimer
 
 This script is intended for adult audiences (18+ years old) due to the content on the Nhentai website. The author is not responsible for the misuse of the script. Browsing and accessing content on Nhentai should be done in accordance with local laws and with proper consent.
 
-Contributions
+# Contributions
 
 Contributions are welcome! If you have suggestions, improvements, or bug fixes for the script, feel free to open an issue or submit a pull request.
 
