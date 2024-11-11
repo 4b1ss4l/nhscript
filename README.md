@@ -1,50 +1,65 @@
-Here’s the README translated into English:
-
 
 ---
 
-Nhentai Script
+# Nhentai Script
 
 This script is a terminal tool for accessing the Nhentai website, allowing navigation through various options such as random pages, tag searches, popular pages, and other functionalities. It is designed to be used in environments like Termux and Linux-based systems. This script was created to simplify navigation on Nhentai directly from the terminal.
 
 Features
 
-Random: Redirects the user to a random Nhentai page.
+# Random:
+Redirects the user to a random Nhentai page.
 
-Specific Page: Allows the user to enter a page number to directly access a page on Nhentai.
+# Specific Page:
+Allows the user to enter a page number to directly access a page on Nhentai.
 
-Latest: Takes the user to the latest uploaded content.
+# Latest:
+Takes the user to the latest uploaded content.
 
-Popular: Directs to the popular section of the site.
+# Popular:
+Directs to the popular section of the site.
 
-Search: Allows searching content by tag or keyword.
+# Search:
+Allows searching content by tag or keyword.
 
 Info Options: Displays details about the script options.
 
-Random Tag: Searches for a random tag.
+# Random Tag:
+Searches for a random tag.
 
-Update Script: Updates the script from the GitHub repository.
+# Update Script:
+Updates the script from the GitHub repository.
 
 
 How to Use
 
 1. Install Termux (if you don’t have it):
 
-Termux can be downloaded from the Google Play Store or directly from the Termux GitHub page.
+Termux can be downloaded from the Google Play Store or directly from fdroid
+```ShellSession
+https://f-droid.org/pt_BR/packages/com.termux/
+```
+
+1.5 
 
 
 
 2. Download the script:
+ ```ShellSession
+
+```
+
+ 
 
 
-
-
-3. Run the script:
+4. Run the script:
 
 In the terminal, run the script with the command:
 
+```ShellSession
 
-./nh.sh
+```
+
 
 The script will display a menu with options, and you can select them by typing the corresponding number.
 
