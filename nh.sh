@@ -46,26 +46,30 @@ while true; do
             termux-open-url "https://nhentai.net/?sort=popular"
             ;;
         5)
-            echo -e "\e[32mPopular Tags (Press Enter to go back): \e[0m"
-            # Lista de tags populares
-            tags=("Anal" "Harem" "Vanilla" "Bukkake" "BDSM" "Futanari" "Femdom" "Yaoi" "Yuri" "Tentacle" 
-            "Cuckold" "Coping" "NTR" "Incest" "Lactation" "Mobility" "Toys" "Group" "Crossover" "Manga" 
-            "Cream pie" "Big Tits" "Blowjob" "Furry" "Females" "Futas" "Futanari Male" "Domination" "Loli" 
-            "Shota" "18+" "Mature" "Pet Play" "Fisting" "Threesome" "Yuri-on-Yuri" "Tentacles" "Mindbreak" "Whipping" "Bestiality" "Storyline" "Bondage" "Spanking" "Groping" "Massage" "Pee" 
-            "Public" "Cowgirl" "MILF" "Shemale" "Hentai Girls" "Masturbation" "Crossdressing" "Striptease" 
-            "Golden Shower" "Oral" "Choking" "Giantess" "Feet" "Grannies" "Footjob" "Tease" "Submissive" 
-            "Blackmail" "Fur" "Chimera" "Dom/sub" "Glasses" "Big Ass" "Anime" "Furry" "Puppy Play" 
-            "Masturbation" "Fucked in the ass" "Petplay" "Tickling" "Handjob" "Nude" "Swimsuit" "Pussy")
-            echo -e "\e[34mSelect a tag from the list: \e[0m"
-            select tag in "${tags[@]}"; do
-                if [ -n "$tag" ]; then
-                    termux-open-url "https://nhentai.net/search/?q=$tag"
-                    break
-                else
-                    echo "Invalid selection, please try again."
-                fi
-            done
-            ;;
+    echo -e "\e[32mPopular Tags (Press Enter to go back): \e[0m"
+    # Lista de tags populares
+    tags=("Anal" "Harem" "Vanilla" "Bukkake" "BDSM" "Futanari" "Femdom" "Yaoi" "Yuri" "Tentacle" 
+    "Cuckold" "Coping" "NTR" "Incest" "Lactation" "Mobility" "Toys" "Group" "Crossover" "Manga" 
+    "Cream pie" "Big Tits" "Blowjob" "Furry" "Females" "Futas" "Futanari Male" "Domination" "Loli" 
+    "Shota" "18+" "Mature" "Pet Play" "Fisting" "Threesome" "Yuri-on-Yuri" "Tentacles" "Mindbreak" "Whipping" "Bestiality" "Storyline" "Bondage" "Spanking" "Groping" "Massage" "Pee" 
+    "Public" "Cowgirl" "MILF" "Shemale" "Hentai Girls" "Masturbation" "Crossdressing" "Striptease" 
+    "Golden Shower" "Oral" "Choking" "Giantess" "Feet" "Grannies" "Footjob" "Tease" "Submissive" 
+    "Blackmail" "Fur" "Chimera" "Dom/sub" "Glasses" "Big Ass" "Anime" "Furry" "Puppy Play" 
+    "Masturbation" "Fucked in the ass" "Petplay" "Tickling" "Handjob" "Nude" "Swimsuit" "Pussy")
+    
+    echo -e "\e[34mSelect a tag from the list or type any text to search directly: \e[0m"
+    read user_input
+
+    # Verifica se o input está na lista de tags
+    if [[ " ${tags[*]} " == *" $user_input "* ]]; then
+        # Se estiver na lista, pesquisa pela tag
+        termux-open-url "https://nhentai.net/search/?q=$user_input"
+    else
+        # Caso contrário, faz uma busca direta com o input fornecido
+        echo -e "\e[32mSearching for: $user_input\e[0m"
+        termux-open-url "https://nhentai.net/search/?q=$user_input"
+    fi
+    ;;
         6)
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
