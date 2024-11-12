@@ -14,7 +14,7 @@ while true; do
 
     # Informações e opções
     echo ""
-    echo -e "\e[36mProject by 4b1ss4l // Beta version\e[0m"
+    echo -e "\e[36mProject by 4b1ss4l // Beta version! test\e[0m"
     echo -e "\e[32mEnter a number...\e[0m"
     echo -e "\e[36m[1] RANDOM // Takes you to a random Nhentai page\e[0m"
     echo -e "\e[36m[2] SPECIFIC // You enter a page number\e[0m"
