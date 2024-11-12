@@ -70,7 +70,7 @@ Internet connection to access Nhentai page
 
 # License
 
-This project is licensed under the MIT License. For more information, see the LICENSE file.
+This project is licensed under the Apache License. For more information, see the LICENSE file.
 
 # Disclaimer
 
