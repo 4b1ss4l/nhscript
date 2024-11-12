@@ -80,7 +80,7 @@ while true; do
         6)
             echo -e "\e[36mUpdating the script from GitHub...\e[0m"
             git pull origin main
-            echo "bash NHScript"
+            bash "$0"
             ;;
         7)
             echo -e "\e[36mINFO OPTIONS\e[0m"
