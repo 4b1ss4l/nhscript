@@ -80,6 +80,7 @@ while true; do
         6)
             echo -e "\e[36mUpdating the script from GitHub...\e[0m"
             git pull origin main
+            echo "bash NHScript"
             ;;
         7)
             echo -e "\e[36mINFO OPTIONS\e[0m"
@@ -88,10 +89,10 @@ while true; do
             echo -e "\e[32m3) LATEST: Takes you to the latest uploaded content.\e[0m"
             echo -e "\e[32m4) POPULAR: Directs you to the popular section of Nhentai.\e[0m"
             echo -e "\e[32m5) SEARCH: Search content by a specific tag or keyword.\e[0m"
-            echo -e "\e[32m6) EXIT: Closes the script.\e[0m"
+            echo -e "\e[32m6) Updates the script from GitHub.\e[0m"
             echo -e "\e[32m7) INFO OPTIONS: Displays this help page.\e[0m"
             echo -e "\e[32m8) RANDOM TAG: Gives a random tag and searches for it.\e[0m"
-            echo -e "\e[32m9) UPDATE SCRIPT: Updates the script from GitHub.\e[0m"
+            echo -e "\e[32m9) EXIT: Closes the script\e[0m"
 sleep 10
             ;;
         8)
