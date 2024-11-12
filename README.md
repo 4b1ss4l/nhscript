@@ -61,11 +61,11 @@ The script will display a menu with options, and you can select them by typing t
 
 
 
-Requirements
+# Requirements
 
 Termux or a Linux-based terminal
 
-Internet connection to access Nhentai
+Internet connection to access Nhentai page
 
 
 # License
@@ -82,7 +82,7 @@ Contributions are welcome! If you have suggestions, improvements, or bug fixes f
 
 # Contact
 
-You can find me on GitHub here: 4b1ss4l for any questions or feedback.
+You can find me on GitHub here: [4b1ss4l](https://github.com/4b1ss4l) for any questions or feedback.
 
 
 ---
