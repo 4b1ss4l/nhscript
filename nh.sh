@@ -47,6 +47,7 @@ while true; do
             ;;
         5)
     echo -e "\e[32mPopular Tags (Press Enter to go back): \e[0m"
+
     # Lista de tags populares
     tags=("Anal" "Harem" "Vanilla" "Bukkake" "BDSM" "Futanari" "Femdom" "Yaoi" "Yuri" "Tentacle" 
     "Cuckold" "Coping" "NTR" "Incest" "Lactation" "Mobility" "Toys" "Group" "Crossover" "Manga" 
@@ -57,13 +58,19 @@ while true; do
     "Blackmail" "Fur" "Chimera" "Dom/sub" "Glasses" "Big Ass" "Anime" "Furry" "Puppy Play" 
     "Masturbation" "Fucked in the ass" "Petplay" "Tickling" "Handjob" "Nude" "Swimsuit" "Pussy")
     
-    echo -e "\e[34mSelect a tag from the list or type any text to search directly: \e[0m"
+    # Exibe cada tag com um índice
+    for i in "${!tags[@]}"; do
+        echo "$((i+1))) ${tags[i]}"
+    done
+
+    echo -e "\e[34mSelect a tag number from the list, type a tag name, or enter any text to search directly: \e[0m"
     read user_input
 
-    # Verifica se o input está na lista de tags
-    if [[ " ${tags[*]} " == *" $user_input "* ]]; then
-        # Se estiver na lista, pesquisa pela tag
-        termux-open-url "https://nhentai.net/search/?q=$user_input"
+    # Verifica se o input é um número válido e, se for, usa a tag correspondente
+    if [[ "$user_input" =~ ^[0-9]+$ ]] && [ "$user_input" -ge 1 ] && [ "$user_input" -le "${#tags[@]}" ]; then
+        selected_tag="${tags[user_input-1]}"
+        echo -e "\e[32mSearching for tag: $selected_tag\e[0m"
+        termux-open-url "https://nhentai.net/search/?q=$selected_tag"
     else
         # Caso contrário, faz uma busca direta com o input fornecido
         echo -e "\e[32mSearching for: $user_input\e[0m"
