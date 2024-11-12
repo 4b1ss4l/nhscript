@@ -35,10 +35,8 @@ How to Use
 
 1. Install Termux (if you don’t have it):
 
-Termux can be downloaded from the Google Play Store or directly from fdroid
-```ShellSession
-https://f-droid.org/pt_BR/packages/com.termux/
-```
+Termux can be downloaded from the Google Play Store or directly [from fdroid](https://f-droid.org/pt_BR/packages/com.termux/)
+[from play store](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps/details/Termux%3Fid%3Dcom.termux%26hl%3Dpt_PT&ved=2ahUKEwiX3_L29taJAxUsrpUCHc4sDhAQFnoECBQQAQ&usg=AOvVaw012ikpP9213rT69mwMu_zt)
 
 
 
