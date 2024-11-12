@@ -22,7 +22,8 @@ Directs to the popular section of the site.
 # Search:
 Allows searching content by tag or keyword.
 
-Info Options: Displays details about the script options.
+# Info Options:
+Displays details about the script options.
 
 # Random Tag:
 Searches for a random tag.
