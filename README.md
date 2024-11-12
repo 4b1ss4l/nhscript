@@ -29,10 +29,9 @@ Displays details about the script options.
 Searches for a random tag.
 
 # Update Script:
-Updates the script from the GitHub repository. (after typing 9, Use CTRL + C to stop, and run the code again to refresh)
+Updates the script from the GitHub repository. (after typing 9, use the 6 option to exit, and re-enter the script for update)
 
-
-How to Use
+# How to Use
 
 1. Install Termux (if you don’t have it):
 
