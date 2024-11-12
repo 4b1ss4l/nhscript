@@ -29,7 +29,7 @@ Displays details about the script options.
 Searches for a random tag.
 
 # Update Script:
-Updates the script from the GitHub repository.
+Updates the script from the GitHub repository. (after typing 9, Use CTRL + C to stop, and run the code again to refresh)
 
 
 How to Use
