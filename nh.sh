@@ -21,7 +21,7 @@ while true; do
     echo -e "\e[36m[3] LATEST // Go to the latest Nhentai upload\e[0m"
     echo -e "\e[36m[4] POPULAR // Go to the popular section\e[0m"
     echo -e "\e[36m[5] SEARCH // Search by tag or a keyword\e[0m"
-    echo -e "\e[36m[6] EXIT // Exit the script\e[0m"
+    echo -e "\e[36m[6] UPDATE SCRIPT // Update script from the GitHub repository\e[0m"
     echo -e "\e[36m[7] INFO OPTIONS // Displays information about the script and options\e[0m"
     echo -e "\e[36m[8] RANDOM TAG // Get a random tag and search for it\e[0m"
     echo -e "\e[36m[9] EXIT // Exit the script\e[0m"
