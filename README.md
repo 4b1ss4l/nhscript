@@ -72,7 +72,7 @@ Internet connection to access Nhentai page
 This project is licensed under the Apache License. For more information, see the LICENSE file.
 
 ```ShellSession
-Copyright [yyyy] [name of copyright owner]
+Copyright [2024] [4b1ss4l]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
