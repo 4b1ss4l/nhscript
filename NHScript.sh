@@ -106,9 +106,12 @@ sleep 10
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
             ;;
-            10) 
+            10)
     # Attempt to get a random Nhentai page
-    while true; do
+    max_attempts=5  # Limit the number of retries
+    attempt=0
+    
+    while [[ $attempt -lt $max_attempts ]]; do
         # Fetch a random image
         page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
         page_url="https://nhentai.net$page_code"
@@ -119,6 +122,7 @@ sleep 10
         if [[ -z "$page_check" ]]; then
             # If the page doesn't have the expected image data, it's invalid, so try another
             echo "Page not found. Trying another..."
+            ((attempt++))
         else
             # If the page has the image, it's valid, so open it
             echo "Page found! Redirecting to: $page_url"
@@ -126,6 +130,10 @@ sleep 10
             break
         fi
     done
+    
+    if [[ $attempt -eq $max_attempts ]]; then
+        echo "No valid page found after $max_attempts attempts."
+    fi
     ;;
     
             
