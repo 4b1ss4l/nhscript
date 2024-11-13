@@ -81,7 +81,7 @@ while true; do
         6)
             echo -e "\e[36mUpdating the script from GitHub...\e[0m"
             git pull origin main
-sleep 3
+sleep 1
             bash "$0"
             ;;
         7)
@@ -95,7 +95,7 @@ sleep 3
             echo -e "\e[32m7) INFO OPTIONS: Displays this help page.\e[0m"
             echo -e "\e[32m8) RANDOM TAG: Gives a random tag and searches for it.\e[0m"
             echo -e "\e[32m9) EXIT: Closes the script.\e[0m"
-sleep 10
+sleep 7
             ;;
         8)
             random_tag=${tags[$RANDOM % ${#tags[@]}]}
