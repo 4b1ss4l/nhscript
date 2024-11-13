@@ -113,41 +113,21 @@ sleep 10
         page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
         page_url="https://nhentai.net$page_code"
         
-        # Check if the page exists by searching for a unique element on the page (e.g., the title tag)
-        page_check=$(curl -s "$page_url" | grep -o "<title>")
-        
-        if [[ "$page_check" == *"<title>"* ]]; then
+        # Check if the page exists by looking for specific text like "404" or "Page not found"
+        page_check=$(curl -s "$page_url" | grep -o "404")
+
+        if [[ "$page_check" == "404" ]]; then
+            # If the page doesn't exist, try another random page
+            echo "Page not found. Trying another..."
+        else
             # If the page exists, print the URL and break the loop
             echo "Page found! Redirecting to: $page_url"
             xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
             break
-        else
-            # If the page doesn't exist, try another random page
-            echo "Page not found. Trying another..."
         fi
     done
     ;;
-    10) 
-    # Attempt to get a random Nhentai page
-    while true; do
-        # Fetch a random image
-        page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
-        page_url="https://nhentai.net$page_code"
-        
-        # Check if the page exists by searching for a unique element on the page (e.g., the title tag)
-        page_check=$(curl -s "$page_url" | grep -o "<title>")
-        
-        if [[ "$page_check" == *"<title>"* ]]; then
-            # If the page exists, print the URL and break the loop
-            echo "Page found! Redirecting to: $page_url"
-            xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
-            break
-        else
-            # If the page doesn't exist, try another random page
-            echo "Page not found. Trying another..."
-        fi
-    done
-    ;;
+    
             
     esac
 
