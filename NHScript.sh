@@ -106,13 +106,14 @@ sleep 10
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
             ;;
-        *)
-            echo -e "\e[31mInvalid option, please select a valid number.\e[0m"
-            ;;
             10)
     # Code to fetch a random image
     curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1 | xargs -I {} echo "https://nhentai.net{}"
     ;;
+        *)
+            echo -e "\e[31mInvalid option, please select a valid number.\e[0m"
+            ;;
+            
     esac
 
     # Espera antes de limpar e reiniciar o loop
