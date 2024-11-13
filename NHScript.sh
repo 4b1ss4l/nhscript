@@ -107,33 +107,32 @@ sleep 10
             exit 0
             ;;
             10)
-    # Attempt to get a random Nhentai page
-    max_attempts=5  # Limit the number of retries
-    attempt=0
+    # Fetch the latest page of Nhentai
+    latest_page_url="https://nhentai.net/"
     
-    while [[ $attempt -lt $max_attempts ]]; do
-        # Fetch a random image
-        page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
-        page_url="https://nhentai.net$page_code"
-        
-        # Check if the page exists by looking for the title or image
-        page_check=$(curl -s "$page_url" | grep -o 'data-src="https://t.nhentai.net/galleries/')
-
-        if [[ -z "$page_check" ]]; then
-            # If the page doesn't have the expected image data, it's invalid, so try another
-            echo "Page not found. Trying another..."
-            ((attempt++))
-        else
-            # If the page has the image, it's valid, so open it
-            echo "Page found! Redirecting to: $page_url"
-            xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
-            break
-        fi
-    done
+    # Get a list of all hentai entries on the "Latest" page
+    hentai_links=$(curl -s "$latest_page_url" | grep -oP '(?<=href=")\/g\/\d+' | head -n 10)  # Get the first 10 hentai links
     
-    if [[ $attempt -eq $max_attempts ]]; then
-        echo "No valid page found after $max_attempts attempts."
-    fi
+    # Pick a random hentai
+    random_hentai_code=$(echo "$hentai_links" | shuf -n 1)
+    
+    # Construct the URL for the random hentai
+    hentai_url="https://nhentai.net$random_hentai_code"
+    
+    # Fetch the hentai page to find the number of pages in the hentai
+    pages_count=$(curl -s "$hentai_url" | grep -oP '(?<=page_count":)\d+')
+    
+    # Randomly select a page number from the total number of pages
+    random_page=$(shuf -i 1-$pages_count -n 1)
+    
+    # Construct the image URL for the random page
+    image_url="https://nhentai.net/g/$random_hentai_code/$random_page/"
+    
+    # Output the random image URL
+    echo "Redirecting to: $image_url"
+    
+    # Open the image (you can use 'xdg-open' for Linux or 'open' for MacOS)
+    xdg-open "$image_url"
     ;;
     
             
