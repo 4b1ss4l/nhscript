@@ -7,10 +7,10 @@ while true; do
     # Exibe a tipografia "NH" em azul escuro
     echo -e "\e[34m<3<3           <3       <3\e[0m"
     echo -e "\e[34m<3 <3          <3       <3\e[0m"
-    echo -e "\e[34m<3    <3       <3<3<3<3<3\e[0m"
-    echo -e "\e[34m<3       <3    <3       <3\e[0m"
-    echo -e "\e[34m<3         <3  <3       <3\e[0m"
-    echo -e "\e[34m<3           <3<3       <3\e[0m"
+    echo -e "\e[34m<3  <3       <3<3<3<3<3\e[0m"
+    echo -e "\e[34m<3     <3    <3       <3\e[0m"
+    echo -e "\e[34m<3       <3  <3       <3\e[0m"
+    echo -e "\e[34m<3         <3<3       <3\e[0m"
 
     # Informações e opções
     echo ""
