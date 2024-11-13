@@ -126,7 +126,7 @@ sleep 10
     hentai_url="https://nhentai.net$random_hentai_code"
     
     # Fetch the hentai page to get the number of pages
-    number_of_pages=$(curl -s "$hentai_url" | grep -oP '(?<=page_count":)\d+')
+    number_of_pages=$(curl -s "$hentai_url" | grep -oP '"page_count":\d+' | sed 's/"page_count"://')
     
     # Check if number_of_pages is valid
     if [ -z "$number_of_pages" ]; then
@@ -134,9 +134,18 @@ sleep 10
         exit 1
     fi
     
-    # Ensure the number of pages is a valid number
+    # Check if number_of_pages is a valid number
     if ! [[ "$number_of_pages" =~ ^[0-9]+$ ]]; then
         echo "Invalid page count."
+        exit 1
+    fi
+    
+    # Display the number of pages fetched
+    echo "This hentai has $number_of_pages pages."
+    
+    # Ensure the number of pages is a valid range for shuf
+    if [ "$number_of_pages" -lt 1 ]; then
+        echo "The hentai has no pages."
         exit 1
     fi
     
