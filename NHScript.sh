@@ -106,38 +106,47 @@ sleep 10
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
             ;;
-            10)
-    # Loop infinito até encontrar uma página válida
+            10) 
+    # Attempt to get a random Nhentai page
     while true; do
-        # Fetch a random page URL
-        page_url=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")/g/\d+' | head -n 1)
+        # Fetch a random image
+        page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
+        page_url="https://nhentai.net$page_code"
         
-        if [ -z "$page_url" ]; then
-            echo "Couldn't fetch a random page. Trying again..."
-            continue
-        fi
-
-        # Get the number of pages for this specific hentai
-        num_pages=$(curl -s "https://nhentai.net$page_url" | grep -oP '(?<=<span class="pages">)\d+' | head -n 1)
-
-        if [ ! -z "$num_pages" ]; then
-            # Pick a random page number
-            random_page=$((RANDOM % num_pages + 1))
-            
-            # Check if the page exists
-            page_check=$(curl -s -o /dev/null -w "%{http_code}" "https://nhentai.net$page_url/$random_page")
-            
-            # If page exists, show the link and break the loop
-            if [ "$page_check" -eq 200 ]; then
-                echo "Page found! Redirecting to: https://nhentai.net$page_url/$random_page"
-                break
-            else
-                echo "Page not found, trying another one..."
-            fi
+        # Check if the page exists by searching for a unique element on the page (e.g., the title tag)
+        page_check=$(curl -s "$page_url" | grep -o "<title>")
+        
+        if [[ "$page_check" == *"<title>"* ]]; then
+            # If the page exists, print the URL and break the loop
+            echo "Page found! Redirecting to: $page_url"
+            xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
+            break
         else
-            echo "Couldn't determine the number of pages for this hentai. Trying again..."
+            # If the page doesn't exist, try another random page
+            echo "Page not found. Trying another..."
         fi
-        done
+    done
+    ;;
+    10) 
+    # Attempt to get a random Nhentai page
+    while true; do
+        # Fetch a random image
+        page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
+        page_url="https://nhentai.net$page_code"
+        
+        # Check if the page exists by searching for a unique element on the page (e.g., the title tag)
+        page_check=$(curl -s "$page_url" | grep -o "<title>")
+        
+        if [[ "$page_check" == *"<title>"* ]]; then
+            # If the page exists, print the URL and break the loop
+            echo "Page found! Redirecting to: $page_url"
+            xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
+            break
+        else
+            # If the page doesn't exist, try another random page
+            echo "Page not found. Trying another..."
+        fi
+    done
     ;;
             
     esac
