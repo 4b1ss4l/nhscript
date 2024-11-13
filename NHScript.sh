@@ -107,12 +107,14 @@ sleep 10
             exit 0
             ;;
             10)
-    # Code to fetch a random image
-    curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1 | xargs -I {} echo "https://nhentai.net{}"
+    # Code to fetch a random image from Nhentai
+    page_url=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")/g/\d+' | head -n 1)
+    if [ -z "$page_url" ]; then
+        echo "Couldn't fetch a random image, please try again later."
+    else
+        echo "Here is a random Nhentai image link: https://nhentai.net$page_url"
+    fi
     ;;
-        *)
-            echo -e "\e[31mInvalid option, please select a valid number.\e[0m"
-            ;;
             
     esac
 
