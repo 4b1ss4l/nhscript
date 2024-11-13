@@ -1,6 +1,6 @@
 4b1ss4l - 2024
 
-Custom License - Version 2.0
+Apache License - Version 2.0
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
 1. Definitions
