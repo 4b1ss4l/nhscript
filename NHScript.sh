@@ -134,6 +134,12 @@ sleep 10
         exit 1
     fi
     
+    # Ensure the number of pages is a valid number
+    if ! [[ "$number_of_pages" =~ ^[0-9]+$ ]]; then
+        echo "Invalid page count."
+        exit 1
+    fi
+    
     # Select a random page within the total number of pages
     random_page=$(shuf -i 1-$number_of_pages -n 1)
     
