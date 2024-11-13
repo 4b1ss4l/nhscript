@@ -140,6 +140,7 @@ sleep 7
     echo -e "Number of Chapters: $num_chapters"
     echo -e "Synopsis: $synopsis"
     echo -e "Access the hentai page: https://nhentai.net/g/$hentai_code/"
+    sleep 10
     ;;
     
             
