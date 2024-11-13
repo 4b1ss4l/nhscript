@@ -107,43 +107,49 @@ sleep 10
             exit 0
             ;;
             10)
-    # Fetch the latest page of Nhentai
-    latest_page_url="https://nhentai.net/"
+    # Fetch the most recent page from Nhentai
+    recent_page_url="https://nhentai.net/"
     
-    # Get a list of all hentai entries on the "Latest" page
-    hentai_links=$(curl -s "$latest_page_url" | grep -oP '(?<=href=")\/g\/\d+' | head -n 10)  # Get the first 10 hentai links
+    # Fetch a list of hentai links from the "Recent" page
+    hentai_links=$(curl -s "$recent_page_url" | grep -oP '(?<=href=")\/g\/\d+' | head -n 10)  # Get the first 10 hentai links
     
-    # Check if hentai_links is not empty
+    # Check if hentai_links is empty
     if [ -z "$hentai_links" ]; then
-        echo "No hentai links found on the latest page."
+        echo "No hentai links were found on the recent page."
         exit 1
     fi
     
-    # Pick a random hentai
+    # Select a random hentai link
     random_hentai_code=$(echo "$hentai_links" | shuf -n 1)
     
-    # Construct the URL for the random hentai
+    # Create the URL for the random hentai
     hentai_url="https://nhentai.net$random_hentai_code"
     
-    # Fetch the hentai page to find the number of pages in the hentai
-    pages_count=$(curl -s "$hentai_url" | grep -oP '(?<=page_count":)\d+')
+    # Fetch the hentai page to get the number of pages
+    number_of_pages=$(curl -s "$hentai_url" | grep -oP '(?<=page_count":)\d+')
     
-    # Check if pages_count is valid
-    if [ -z "$pages_count" ]; then
-        echo "Could not retrieve page count."
+    # Check if number_of_pages is valid
+    if [ -z "$number_of_pages" ]; then
+        echo "Unable to fetch the number of pages."
         exit 1
     fi
     
-    # Randomly select a page number from the total number of pages
-    random_page=$(shuf -i 1-$pages_count -n 1)
+    # Select a random page within the total number of pages
+    random_page=$(shuf -i 1-$number_of_pages -n 1)
     
-    # Construct the image URL for the random page
+    # Check if random_page is valid
+    if [ -z "$random_page" ]; then
+        echo "Invalid page number."
+        exit 1
+    fi
+    
+    # Create the URL for the random image page
     image_url="https://nhentai.net/g/$random_hentai_code/$random_page/"
     
-    # Output the random image URL
+    # Show the URL of the random image
     echo "Redirecting to: $image_url"
     
-    # Open the image (you can use 'xdg-open' for Linux or 'open' for MacOS)
+    # Open the image (use 'xdg-open' on Linux or 'open' on macOS)
     xdg-open "$image_url"
     ;;
     
