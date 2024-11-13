@@ -113,6 +113,12 @@ sleep 10
     # Get a list of all hentai entries on the "Latest" page
     hentai_links=$(curl -s "$latest_page_url" | grep -oP '(?<=href=")\/g\/\d+' | head -n 10)  # Get the first 10 hentai links
     
+    # Check if hentai_links is not empty
+    if [ -z "$hentai_links" ]; then
+        echo "No hentai links found on the latest page."
+        exit 1
+    fi
+    
     # Pick a random hentai
     random_hentai_code=$(echo "$hentai_links" | shuf -n 1)
     
@@ -121,6 +127,12 @@ sleep 10
     
     # Fetch the hentai page to find the number of pages in the hentai
     pages_count=$(curl -s "$hentai_url" | grep -oP '(?<=page_count":)\d+')
+    
+    # Check if pages_count is valid
+    if [ -z "$pages_count" ]; then
+        echo "Could not retrieve page count."
+        exit 1
+    fi
     
     # Randomly select a page number from the total number of pages
     random_page=$(shuf -i 1-$pages_count -n 1)
@@ -133,7 +145,6 @@ sleep 10
     
     # Open the image (you can use 'xdg-open' for Linux or 'open' for MacOS)
     xdg-open "$image_url"
-    sleep 10
     ;;
     
             
