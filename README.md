@@ -42,7 +42,7 @@ Termux can be downloaded [from fdroid](https://f-droid.org/pt_BR/packages/com.te
 
 2. Fix the terminal and download the script:
  ```ShellSession
-apt update && upgrade && pkg install git -y && git clone https://github.com/4b1ss4l/nhscript
+pkg update && upgrade && pkg install git -y && git clone https://github.com/4b1ss4l/nhscript
 ```
 
  
