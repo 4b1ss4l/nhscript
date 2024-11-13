@@ -25,7 +25,7 @@ while true; do
     echo -e "\e[36m[7] INFO OPTIONS // Displays information about the script and options\e[0m"
     echo -e "\e[36m[8] RANDOM TAG // Get a random tag and search for it\e[0m"
     echo -e "\e[36m[9] EXIT // Exit the script\e[0m"
-    echo -e "\e[36m[10] RANDOM IMAGE // Go to a random image from Nhentai\e[0m"
+    echo -e "\e[36m[10] HENTAI DETAIL //All details of the hentai\e[0m"
 
     # Lê a opção do usuário
     echo -e "\e[32mSelect an option: \e[0m\c"
@@ -95,6 +95,7 @@ sleep 1
             echo -e "\e[32m7) INFO OPTIONS: Displays this help page.\e[0m"
             echo -e "\e[32m8) RANDOM TAG: Gives a random tag and searches for it.\e[0m"
             echo -e "\e[32m9) EXIT: Closes the script.\e[0m"
+            echo -e "\e[32m9) HENTAI DETAIL: All details about hentai.\e[0m"
 sleep 7
             ;;
         8)
@@ -106,23 +107,39 @@ sleep 7
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
             ;;
-            10) 
-    # Get the URL of the latest page
-    latest_page_url=$(curl -s https://nhentai.net/recent/ | grep -oP 'href="\/g\/\d+' | head -n 1 | sed 's/href="//')
-
-    # Fetch the number of pages for that specific Hentai
-    max_pages=$(curl -s https://nhentai.net${latest_page_url} | grep -oP 'Page \d+ of \K\d+' | head -n 1)
-
-    # If no pages found, default to 1
-    if [ -z "$max_pages" ]; then
-        max_pages=1
-    fi
-
-    # Generate a random page number between 1 and the maximum available
-    random_page=$((RANDOM % max_pages + 1))
-
-    # Redirect to a random page
-    echo "Redirecting to: https://nhentai.net${latest_page_url}/${random_page}/"
+            10) # Hentai Detail
+    echo "Enter the hentai code:"
+    read hentai_code
+    echo "Fetching details for Hentai ID: $hentai_code..."
+    
+    # Fetch the hentai page and extract the required information
+    hentai_details=$(curl -s "https://nhentai.net/g/$hentai_code/" |
+                     grep -oP '(?<=<title>)(.*?)(?=</title>)' | 
+                     sed -e 's/ - Nhentai//g')
+    
+    # Extract additional details
+    author=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Author: <a href=".*?">)(.*?)(?=</a>)')
+    artist=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Artist: <a href=".*?">)(.*?)(?=</a>)')
+    pages=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Pages: </span><span>)(\d+)')
+    tags=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<a href="/tag/.*?">)(.*?)(?=</a>)' | head -n 5)
+    year=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Released: </span><span>)(\d{4})')
+    views=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="views">)(.*?)(?=</span>)')
+    categories=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="category">)(.*?)(?=</span>)' | head -n 5)
+    num_chapters=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Chapters: </span><span>)(\d+)')
+    synopsis=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="synopsis">)(.*?)(?=</span>)')
+    
+    # Display all details
+    echo -e "Title: $hentai_details"
+    echo -e "Author: $author"
+    echo -e "Artist(s): $artist"
+    echo -e "Number of Pages: $pages"
+    echo -e "Tags: $tags"
+    echo -e "Release Year: $year"
+    echo -e "Number of Views: $views"
+    echo -e "Categories: $categories"
+    echo -e "Number of Chapters: $num_chapters"
+    echo -e "Synopsis: $synopsis"
+    echo -e "Access the hentai page: https://nhentai.net/g/$hentai_code/"
     ;;
     
             
