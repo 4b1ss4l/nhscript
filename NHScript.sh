@@ -133,6 +133,7 @@ sleep 10
     
     # Open the image (you can use 'xdg-open' for Linux or 'open' for MacOS)
     xdg-open "$image_url"
+    sleep 10
     ;;
     
             
