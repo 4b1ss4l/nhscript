@@ -137,6 +137,7 @@ sleep 10
         else
             echo "Couldn't determine the number of pages for this hentai. Trying again..."
         fi
+        done
     ;;
             
     esac
