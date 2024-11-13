@@ -113,14 +113,14 @@ sleep 10
         page_code=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1)
         page_url="https://nhentai.net$page_code"
         
-        # Check if the page exists by looking for specific text like "404" or "Page not found"
-        page_check=$(curl -s "$page_url" | grep -o "404")
+        # Check if the page exists by looking for the title or image
+        page_check=$(curl -s "$page_url" | grep -o 'data-src="https://t.nhentai.net/galleries/')
 
-        if [[ "$page_check" == "404" ]]; then
-            # If the page doesn't exist, try another random page
+        if [[ -z "$page_check" ]]; then
+            # If the page doesn't have the expected image data, it's invalid, so try another
             echo "Page not found. Trying another..."
         else
-            # If the page exists, print the URL and break the loop
+            # If the page has the image, it's valid, so open it
             echo "Page found! Redirecting to: $page_url"
             xdg-open "$page_url"  # Open the page (use 'open' on MacOS or 'xdg-open' on Linux)
             break
