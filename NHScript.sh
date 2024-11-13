@@ -4,13 +4,11 @@ while true; do
     # Limpa o terminal
     clear
 
-    # Exibe a tipografia "NH" em azul escuro
-    echo -e "\e[34m<3<3         <3       <3\e[0m"
-    echo -e "\e[34m<3 <3        <3       <3\e[0m"
-    echo -e "\e[34m<3  <3       <3<3<3<3<3\e[0m"
-    echo -e "\e[34m<3     <3    <3       <3\e[0m"
-    echo -e "\e[34m<3       <3  <3       <3\e[0m"
-    echo -e "\e[34m<3         <3<3       <3\e[0m"
+echo -e "\033[1;31m   _  ____ ______        _      __ "
+echo -e "\033[1;31m  / |/ / // / __/_______(_)__  / /_"
+echo -e "\033[1;31m /    / _  /\ \/ __/ __/ / _ \/ __/"
+echo -e "\033[1;31m/_/|_/_//_/___/\__/_/ /_/ .__/\__/"
+echo -e "\033[1;31m                       /_/                     <3"
 
     # Informações e opções
     echo ""
