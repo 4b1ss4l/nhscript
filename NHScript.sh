@@ -25,6 +25,7 @@ while true; do
     echo -e "\e[36m[7] INFO OPTIONS // Displays information about the script and options\e[0m"
     echo -e "\e[36m[8] RANDOM TAG // Get a random tag and search for it\e[0m"
     echo -e "\e[36m[9] EXIT // Exit the script\e[0m"
+    echo -e "\[36m[10] RANDOM IMAGE // Go to a random image from Nhentai\e[0m"
 
     # Lê a opção do usuário
     echo -e "\e[32mSelect an option: \e[0m\c"
@@ -108,6 +109,10 @@ sleep 10
         *)
             echo -e "\e[31mInvalid option, please select a valid number.\e[0m"
             ;;
+            10)
+    # Code to fetch a random image
+    curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")\/g\/\d+' | head -n 1 | xargs -I {} echo "https://nhentai.net{}"
+    ;;
     esac
 
     # Espera antes de limpar e reiniciar o loop
