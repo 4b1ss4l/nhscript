@@ -5,12 +5,12 @@ while true; do
     clear
 
     # Exibe a tipografia "NH" em azul escuro
-    echo -e "\e[34m<3<3             <3         <3\e[0m"
-    echo -e "\e[34m<3   <3          <3         <3\e[0m"
+    echo -e "\e[34m<3<3             <3        <3\e[0m"
+    echo -e "\e[34m<3   <3          <3        <3\e[0m"
     echo -e "\e[34m<3      <3       <3<3<3<3<3\e[0m"
-    echo -e "\e[34m<3         <3    <3         <3\e[0m"
-    echo -e "\e[34m<3           <3  <3         <3\e[0m"
-    echo -e "\e[34m<3             <3<3         <3\e[0m"
+    echo -e "\e[34m<3         <3    <3        <3\e[0m"
+    echo -e "\e[34m<3           <3  <3        <3\e[0m"
+    echo -e "\e[34m<3             <3<3        <3\e[0m"
 
     # Informações e opções
     echo ""
@@ -36,7 +36,7 @@ while true; do
             termux-open-url "https://nhentai.net/random"
             ;;
         2)
-            echo -e "\e[34mEnter a number from 1-80,000: \e[0m\c"
+            echo -e "\e[34mEnter a number from 1-190,000: \e[0m\c"
             read page_number
             termux-open-url "https://nhentai.net/g/$page_number/"
             ;;
