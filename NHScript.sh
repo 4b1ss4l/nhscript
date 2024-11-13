@@ -107,13 +107,36 @@ sleep 10
             exit 0
             ;;
             10)
-    # Code to fetch a random image from Nhentai
-    page_url=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")/g/\d+' | head -n 1)
-    if [ -z "$page_url" ]; then
-        echo "Couldn't fetch a random image, please try again later."
-    else
-        echo "Here is a random Nhentai image link: https://nhentai.net$page_url"
-    fi
+    # Loop infinito até encontrar uma página válida
+    while true; do
+        # Fetch a random page URL
+        page_url=$(curl -s https://nhentai.net/random/ | grep -oP '(?<=href=")/g/\d+' | head -n 1)
+        
+        if [ -z "$page_url" ]; then
+            echo "Couldn't fetch a random page. Trying again..."
+            continue
+        fi
+
+        # Get the number of pages for this specific hentai
+        num_pages=$(curl -s "https://nhentai.net$page_url" | grep -oP '(?<=<span class="pages">)\d+' | head -n 1)
+
+        if [ ! -z "$num_pages" ]; then
+            # Pick a random page number
+            random_page=$((RANDOM % num_pages + 1))
+            
+            # Check if the page exists
+            page_check=$(curl -s -o /dev/null -w "%{http_code}" "https://nhentai.net$page_url/$random_page")
+            
+            # If page exists, show the link and break the loop
+            if [ "$page_check" -eq 200 ]; then
+                echo "Page found! Redirecting to: https://nhentai.net$page_url/$random_page"
+                break
+            else
+                echo "Page not found, trying another one..."
+            fi
+        else
+            echo "Couldn't determine the number of pages for this hentai. Trying again..."
+        fi
     ;;
             
     esac
