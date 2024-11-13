@@ -114,19 +114,18 @@ sleep 7
     
     # Fetch the hentai page and extract the required information
     hentai_details=$(curl -s "https://nhentai.net/g/$hentai_code/" |
-                     grep -oP '(?<=<title>)(.*?)(?=</title>)' | 
-                     sed -e 's/ - Nhentai//g')
+                     sed -n 's/.*<title>.* - Nhentai<\/title>/\1/p')
     
     # Extract additional details
-    author=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Author: <a href=".*?">)(.*?)(?=</a>)')
-    artist=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Artist: <a href=".*?">)(.*?)(?=</a>)')
-    pages=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Pages: </span><span>)(\d+)')
-    tags=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<a href="/tag/.*?">)(.*?)(?=</a>)' | head -n 5)
-    year=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Released: </span><span>)(\d{4})')
-    views=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="views">)(.*?)(?=</span>)')
-    categories=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="category">)(.*?)(?=</span>)' | head -n 5)
-    num_chapters=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=Chapters: </span><span>)(\d+)')
-    synopsis=$(curl -s "https://nhentai.net/g/$hentai_code/" | grep -oP '(?<=<span class="synopsis">)(.*?)(?=</span>)')
+    author=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*Author: <a href=".*">[^<]*<\/a>/\1/p')
+    artist=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*Artist: <a href=".*">[^<]*<\/a>/\1/p')
+    pages=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*Pages: <span>[0-9]*<\/span>/\1/p')
+    tags=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*<a href="\/tag\/.*">[^<]*<\/a>/\1/p' | head -n 5)
+    year=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*Released: <span>[0-9]*<\/span>/\1/p')
+    views=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*<span class="views">[^<]*<\/span>/\1/p')
+    categories=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*<span class="category">[^<]*<\/span>/\1/p' | head -n 5)
+    num_chapters=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*Chapters: <span>[0-9]*<\/span>/\1/p')
+    synopsis=$(curl -s "https://nhentai.net/g/$hentai_code/" | sed -n 's/.*<span class="synopsis">[^<]*<\/span>/\1/p')
     
     # Display all details
     echo -e "Title: $hentai_details"
@@ -140,7 +139,6 @@ sleep 7
     echo -e "Number of Chapters: $num_chapters"
     echo -e "Synopsis: $synopsis"
     echo -e "Access the hentai page: https://nhentai.net/g/$hentai_code/"
-    sleep 10
     ;;
     
             
