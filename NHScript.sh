@@ -101,11 +101,11 @@ sleep 7
             termux-open-url "https://nhentai.net/search/?q=$random_tag"
             ;;
         9)
-        clear
-            echo -e "\e[31mExiting... Bye!\e[0m"
-            cd /
-            exit 0
-            ;;
+    clear
+    echo -e "\e[31mExiting... Bye!\e[0m"
+    cd /
+    exec exit 0
+    ;;
             
     
             
