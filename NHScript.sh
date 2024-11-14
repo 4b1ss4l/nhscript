@@ -103,8 +103,7 @@ sleep 7
         9)
     clear
     echo -e "\e[31mExiting... Bye!\e[0m"
-    cd /
-    exec exit 0
+    exit 0
     ;;
             
     
