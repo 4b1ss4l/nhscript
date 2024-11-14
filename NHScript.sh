@@ -102,6 +102,7 @@ sleep 7
             ;;
         9)
         clear
+        cd /
             echo -e "\e[31mExiting... Bye!\e[0m"
             exit 0
             ;;
