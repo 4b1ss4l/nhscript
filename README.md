@@ -53,7 +53,7 @@ pkg update && upgrade && pkg install git -y && git clone https://github.com/4b1s
 In the terminal, run the script with the command:
 
 ```ShellSession
-cd nhscript/ && bash nh.sh
+cd nhscript/ && bash NHScript.sh
 ```
 
 
